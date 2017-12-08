@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jr</groupId>
+    <artifactId>myAppBeta3_UserService</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <name>myAppBeta3_service</name>
+  <artifactId>myAppBeta3_service</artifactId>
+  <packaging>jar</packaging>
+  <version>${myAppBeta3_service.version}</version>
+  <description>放facade接口实现（调用真正的实现）、dao定义、dao实现</description>
+
+    <build>
+        <finalName>dubbo-service-user</finalName>
+        <resources>
+            <resource>
+                <targetPath>${project.build.directory}/classes</targetPath>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <!-- 结合com.alibaba.dubbo.container.Main -->
+            <!-- 根据dubbo的启动规范，将sping-context.xml拷贝到${project.build.directory}/classes/META-INF/spring下 -->
+            <resource>
+                <targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>applicationContext.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <classesDirectory>target/classes</classesDirectory>
+                <archive>
+                    <manifest>
+                        <mainClass>com.alibaba.dubbo.container.Main</mainClass>
+                        <!-- 打包时MANIFEST.MF文件不记录时间戳版本，避免引用不到的问题 -->
+                        <useUniqueVersions>false</useUniqueVersions>
+                        <addClasspath>true</addClasspath>
+                        <!-- 依赖的类路径 -->
+                        <classpathPrefix>lib/</classpathPrefix>
+                    </manifest>
+                    <manifestEntries>
+                        <Class-Path>.</Class-Path>
+                    </manifestEntries>
+                </archive>
+
+            </configuration>
+        </plugin>
+        <!-- 拷贝依赖的jar包到lib目录 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <!--绑定到maven的生命周期的package阶段-->
+                    <phase>package</phase>
+                    <goals>
+                        <!--指明我们的目标：拷贝依赖-->
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <!--
+                            指明我们拷贝的依赖要放到哪个文件夹下面
+                            这里指的是项目的： /项目根目录/target/lib 目录下
+                        -->
+                        <type>jar</type>
+                        <includeTypes>jar</includeTypes>
+
+                        <outputDirectory>
+                            ${project.build.directory}/lib
+                        </outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        </plugins>
+
+    </build>
+
+
+  
+  <dependencies>
+      <dependency>
+          <groupId>com.jr</groupId>
+          <artifactId>myAppBeta3_config</artifactId>
+          <version>${myAppBeta3_config.version}</version>
+      </dependency>
+  	<dependency>
+  		<groupId>com.jr</groupId>
+  		<artifactId>myAppBeta3_facade</artifactId>
+  		<version>${myAppBeta3_facade.version}</version>
+  	</dependency>
+  </dependencies>
+
+  
+  
+</project>

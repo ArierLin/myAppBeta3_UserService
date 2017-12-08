@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jr</groupId>
+    <artifactId>myAppBeta3_UserService</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <name>myAppBeta3_base</name>
+  <artifactId>myAppBeta3_base</artifactId>
+  <packaging>jar</packaging>
+  <version>${myAppBeta3_base.version}</version>
+  <description>基础工程：放实体、枚举、异常、分页等</description>
+  
+  
+  
+</project>

@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jr</groupId>
+    <artifactId>myAppBeta3_UserService</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>myAppBeta3_web</artifactId>
+  <packaging>war</packaging>
+  <description>dubbo服务的消费者，web层</description>
+  
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.jr</groupId>
+  		<artifactId>myAppBeta3_config</artifactId>
+  		<version>${myAppBeta3_config.version}</version>
+  	</dependency>
+      <dependency>
+          <groupId>com.jr</groupId>
+          <artifactId>myAppBeta3_base</artifactId>
+          <version>${myAppBeta3_base.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.jr</groupId>
+          <artifactId>myAppBeta3_facade</artifactId>
+          <version>${myAppBeta3_facade.version}</version>
+      </dependency>
+
+
+  </dependencies>
+  
+  
+</project>

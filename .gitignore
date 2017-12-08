@@ -1,0 +1,11 @@
+/myAppBeta3_web/target
+/myAppBeta3_service/target
+/myAppBeta3_facade/target
+/myAppBeta3_config/target
+/myAppBeta3_base/target
+/myAppBeta3_base/*.iml
+/myAppBeta3_config/*.iml
+/myAppBeta3_facade/*.iml
+/myAppBeta3_service/*.iml
+/myAppBeta3_web/*.iml
+/*.iml

@@ -1,0 +1,2 @@
+# myAppBeta3_UserService
+改造myApp_beta2，改成dubbo服务版本

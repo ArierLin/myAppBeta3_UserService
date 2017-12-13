@@ -62,12 +62,16 @@
 		<commons-collections.version>3.2.1</commons-collections.version>
 		<commons-pool2.version>2.0</commons-pool2.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<httpclient.version>4.4.1</httpclient.version>
 		
 		<netty.version>3.2.5.Final</netty.version>
 		<dubbo.version>2.4.9</dubbo.version>
 		<zookeeper.version>3.4.5</zookeeper.version>
 		<zkclient.version>0.3</zkclient.version>
         <log4j.version>1.2.17</log4j.version>
+
+		<velocity.version>1.7</velocity.version>
+		<velocity-tools.version>2.0</velocity-tools.version>
 	</properties>
 
 	<dependencies>
@@ -258,6 +262,11 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>${commons-httpclient.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
 
 		<!-- dubbo 需要的jar start -->
 		<dependency>
@@ -315,6 +324,16 @@
 			<version>${zkclient.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>${velocity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>${velocity-tools.version}</version>
+		</dependency>
 
 		<!-- <dependency>
 		    <groupId>com.101tec</groupId>

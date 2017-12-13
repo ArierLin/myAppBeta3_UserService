@@ -8,6 +8,22 @@
   <artifactId>myAppBeta3_web</artifactId>
   <packaging>war</packaging>
   <description>dubbo服务的消费者，web层</description>
+
+    <!--打包规则-->
+    <build>
+        <finalName>myAppBeta3-web-boss</finalName>
+        <resources>
+            <resource>
+                <targetPath>${project.build.directory}/classes</targetPath>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
   
   
   <dependencies>

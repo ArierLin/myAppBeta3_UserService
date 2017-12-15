@@ -1,8 +1,9 @@
 package com.jr.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Authority {
+public class Authority implements Serializable {
 
 	private int id;
 	private String name;

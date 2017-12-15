@@ -1,8 +1,9 @@
 package com.jr.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Role {
+public class Role implements Serializable {
 
 	private int id;					//标识
 	private String name;				//名称

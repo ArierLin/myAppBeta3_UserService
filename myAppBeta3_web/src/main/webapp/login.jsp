@@ -94,7 +94,7 @@
 	<!--登陆表单end-->
     <div class="bottom" >
     	<h1>
-    		<strong>JR系统&nbsp;&nbsp;联系电话:18501917894&nbsp;QQ:1178988014</strong>
+    		<strong>JR系统&nbsp;&nbsp;联系电话:18688420219&nbsp;QQ:1178988014</strong>
     	</h1>
     </div>
 </body>

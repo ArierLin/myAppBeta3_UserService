@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property resource="jrConfig.properties" />
+
+    <!-- 控制台输出配置 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="com.jr.logback.LocalPatternLayoutEncoder">
+            <Pattern>[%date] ip:[%ip] logId:[%logId] [%-5level] uid:[%X{UID}] [%intf][%line] %msg%n</Pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出日志 (时间策略进行文件输出，超过指定时间对文件进行备份) -->
+    <appender name="logInfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.file}.log</File>
+        <encoder class="com.jr.logback.LocalPatternLayoutEncoder">
+            <Pattern>[%date] ip:[%ip] logId:[%logId] [%-5level] uid:[%X{UID}] [%intf][%line] %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.file}-%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!--第三方 jar 日志输出配置 -->
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="INFO"/>
+    <logger name="org.springframework.web.context.support.XmlWebApplicationContext" level="INFO"/>
+    <logger name="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" level="INFO"/>
+    <logger name="org.apache.commons" level="INFO"/>
+
+    <!-- 日志输出适配器配置 -->
+    <root level="${log.level}" name="com.csair.mall">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="logInfoFile"/>
+    </root>
+
+</configuration>

@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
 
-public class VCode {
+/**
+ * 验证码
+ */
+public class VerifyCode {
 	private int w = 70; // 宽
 	private int h = 30; // 高
 	private Color bgColor = new Color(240, 240, 240); // 背景颜色

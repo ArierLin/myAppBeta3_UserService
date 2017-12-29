@@ -72,6 +72,8 @@
 
 		<velocity.version>1.7</velocity.version>
 		<velocity-tools.version>2.0</velocity-tools.version>
+
+		<aspectjweaver.version>1.7.1</aspectjweaver.version>
 	</properties>
 
 	<dependencies>
@@ -351,6 +353,13 @@
 		    <version>0.3</version>
 		</dependency> -->
 		<!-- dubbo 需要的jar end -->
+
+		<!--切面-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectjweaver.version}</version>
+		</dependency>
 
 
 	</dependencies>

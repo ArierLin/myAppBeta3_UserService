@@ -21,16 +21,52 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/scripts.js"></script>
+<script type="text/javascript">
+    $(function(){
+		var validateMsg = '${sessionScope['org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS'][0]['validateMsg']}';
+        alert(validateMsg);
+//        if(validateMsg!=""){
+//            alert(validateMsg);
+//        }
 
+        $("#loginform_submit").click(function(){
+                if(checkInput()){
+                    $("form").action("/shiro-login");
+                }else{
+                    return false;
+                }
+            }
+        );
+        $("#validationCode_img").click(function(){
+                $("#validationCode_img").attr("src","userLogin/validateCode?aaa="+Math.random());
+            }
+        );
+        function checkInput(){
+            //判断用户名
+            if($("input[name=username]").val()==null || $("input[name=username]").val()==""){
+                alert("用户名不能等于空");
+                $("input[name=username]").focus();
+                return false;
+            }
+            //判断密码
+            if($("input[name=password]").val()==null || $("input[name=password]").val()==""){
+                alert("密码不能等于空");
+                $("input[name=password]").focus();
+                return false;
+            }
+            //判断验证码
+            if($("input[name=validateCode]").val()==null || $("input[name=validateCode]").val()==""){
+                alert("验证码不能为空");
+                $("input[name=validateCode]").focus();
+                return false;
+            }
+            return true;
+        }
+
+    });
+</script>
 </head>
 <body >
-   	<!-- 
-    <form action="shiro-login" method="post">
-		username:<input type="text" name="username" /> <br> 
-		password:<input type="password" name="password" /> <br> 
-		<input type="submit" value="submit" />
-	</form>
-	 -->
 	<!-- 登陆表单begin -->
 	<div class="top-content" style="height:800px;">
 		<div class="inner-bg"  style="margin-top:-50px;">
@@ -69,7 +105,16 @@
 										value="123456"
 										>
 								</div>
-								<button type="submit" class="btn">登陆</button>
+								<div class="form-group">
+									<label class="sr-only" for="form-password">验证码</label>
+									<input type="text" name="validateCode" placeholder="验证码..."
+										   class="form-password form-control" id="validateCode"
+										   value=""
+									>
+									<img id="validationCode_img"  src="userLogin/validateCode" width="100" height="40">
+									<%--<input type="text" name="validateMsg" id="validateMsg" value="${validateMsg}"/>--%>
+								</div>
+								<button type="submit" id="loginform_submit" class="btn">登陆</button>
 							</form>
 						</div>
 					</div>

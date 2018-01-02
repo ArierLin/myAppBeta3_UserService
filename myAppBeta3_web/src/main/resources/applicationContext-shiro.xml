@@ -83,10 +83,11 @@
 				
                 /login.jsp = anon
                 /unauthorized.jsp = anon
-               	
-               	/list.jsp = anon
-               	/shiro-login = anon
-               	
+
+				/list.jsp = anon
+				/shiro-login = anon
+				/userLogin/validateCode = anon
+
                 /shiro-logout = logout
                	<!-- 注意顺序（权限匹配），之后应该实现从数据库查询出来 -->
                	/admin.jsp = roles[admin]

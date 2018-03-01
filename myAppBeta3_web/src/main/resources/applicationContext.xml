@@ -20,5 +20,8 @@
 
 	<!-- dubbo消费者配置 -->
 	<import resource="dubbo-consumer.xml" />
+	<!--kafka配置-->
+	<import resource="classpath:kafkaConsumer.xml" />
+	<import resource="classpath:kafkaProducer.xml" />
 
 </beans>

@@ -159,7 +159,7 @@ public class VerifyCode {
 	 * @return 随机码
 	 */
 	private String exctractRandCode() {
-		//得到随机码类型
+		//读取配置文件得到随机码类型
 		final String randCodeType = ResourceUtil.getRandCodeType();
 		//得到随机码长度
 		int randCodeLength = Integer.parseInt(ResourceUtil.getRandCodeLength());

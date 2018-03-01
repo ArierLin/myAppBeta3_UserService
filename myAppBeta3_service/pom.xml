@@ -42,6 +42,7 @@
             </resource>
         </resources>
 
+        <!--创建可执行jar包-->
         <plugins>
             <plugin>
             <groupId>org.apache.maven.plugins</groupId>

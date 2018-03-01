@@ -21,7 +21,21 @@
         提供了一系列数据绑定，数字和日期的format，@NumberFormat,@DataTimeFormat,
             xml,json的默认支持
         -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=utf-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+                <!-- 用于避免响应头过大 -->
+                <property name="writeAcceptCharset" value="false" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--
     使用<context:annotation- config/>隐式地向 Spring容器注册

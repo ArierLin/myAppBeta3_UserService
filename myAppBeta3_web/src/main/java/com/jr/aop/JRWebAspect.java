@@ -3,15 +3,18 @@ package com.jr.aop;
 import com.jr.ResponseCode;
 import com.jr.dto.responseDTO.ResponseDto;
 import com.jr.exception.JRException;
+import com.jr.kafka.producer.KafkaProducerServer;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * web 层切面
@@ -22,6 +25,16 @@ import java.util.Date;
 public class JRWebAspect {
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+
+    public static  final String topic = "orderTopic";
+//    public static  final String value = "testSpring_kafka";
+    //是否使用分区 0是\1不是
+    public static  final String ifPartition = "0";
+    public static  final Integer partitionNum = 3;
+    public static  final String role = "test";//用来生成key
+
+    @Autowired
+    private KafkaProducerServer kafkaProducerServer;
 
     /**
      * 环绕通知
@@ -35,6 +48,12 @@ public class JRWebAspect {
         String method = joinPoint.getSignature().getName();
         MDC.put("intf",simpleClassName + "." + method);
         LOG.info("call " + simpleClassName + "." + method + ", PARAMETER: " + getLog(args));
+        //发送日志信息到kafka，ELK从kafka收集日志信息
+        String value = "call " + simpleClassName + "." + method + ", PARAMETER: " + getLog(args);
+        //获取消息发送结果
+        Map<String, Object> res = kafkaProducerServer.sendMesForTemplate
+                (topic, value, ifPartition, partitionNum, role);
+        //执行切入点的方法
         Object result = null;
         try {
             result = joinPoint.proceed();
